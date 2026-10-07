@@ -1,0 +1,21 @@
+import {
+	CONFIG_STRIPE_KEY,
+	CONFIG_STRIPE_WEBHOOK_KEY,
+	CONFIG_VOSFACTURES_KEY,
+	CONFIG_VOSFACTURES_DOMAIN,
+	CONFIG_VOSFACTURES_TEST,
+	CONFIG_ACTIVATE_KEY,
+	CONFIG_MAILGUN_ID,
+	CONFIG_MAILGUN_KEY
+} from '$app/env/private';
+
+export const config = {
+	stripe_key: CONFIG_STRIPE_KEY,
+	stripe_webhook_key: CONFIG_STRIPE_WEBHOOK_KEY,
+	vosfactures_key: CONFIG_VOSFACTURES_KEY,
+	vosfactures_domain: CONFIG_VOSFACTURES_DOMAIN,
+	vosfactures_test: CONFIG_VOSFACTURES_TEST,
+	activate_key: CONFIG_ACTIVATE_KEY,
+	mailgun_id: CONFIG_MAILGUN_ID,
+	mailgun_key: CONFIG_MAILGUN_KEY
+};

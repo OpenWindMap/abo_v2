@@ -1,0 +1,7 @@
+.svelte-kit
+build
+.netlify
+node_modules
+package-lock.json
+src/routes/+page.svelte
+src/routes/thank-you/+page.svelte
