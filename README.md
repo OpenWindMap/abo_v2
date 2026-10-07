@@ -1,7 +1,7 @@
 # abo.openwindmap.org — abonnements de communication
 
 Formulaire de paiement des abonnements des balises OpenWindMap (Stripe + VosFactures + Mailgun),
-hébergé sur Netlify
+hébergé sur Netlify.
 
 Stack : SvelteKit 3, Svelte 5, Vite 8, `@sveltejs/adapter-netlify`. Node ≥ 22.17 requis.
 
