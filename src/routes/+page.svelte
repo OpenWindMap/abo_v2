@@ -163,7 +163,7 @@
 
 <p><strong>Ce système étant tout neuf, merci de faire un mail à contact@openwindmap.org si vous rencontrez le moindre bug.</strong></p>
 
-<p>Ici, vous pouvez souscrire ou renouveler un abonnement de communication pour une balise météo Sigfox (Pioupiou, MeteoWind, Arduino...)</p>
+<p>Ici, vous pouvez souscrire ou renouveler un abonnement de communication pour une balise météo Sigfox (WindBird, Pioupiou, MeteoWind ou Arduino)</p>
 
 <p>Pour en savoir plus sur les abonnements, vous pouvez consulter <a href="https://openwindmap.org/renouvellement-des-abonnements">info abonnements</a></p>
 
