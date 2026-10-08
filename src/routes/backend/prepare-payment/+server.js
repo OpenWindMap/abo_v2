@@ -56,7 +56,7 @@ export async function POST({ request }) {
 				}
 			],
 			cancel_url: 'https://abo.openwindmap.org/',
-			success_url: 'https://abo.openwindmap.org//thank-you'
+			success_url: 'https://abo.openwindmap.org/thank-you'
 		});
 
 		return Response.json({ redirect: paymentSession.url });
