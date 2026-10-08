@@ -5,7 +5,7 @@ import adapter from '@sveltejs/adapter-node';
 export default defineConfig({
 	plugins: [
 		sveltekit({
-			adapter: adapter({ publish: 'build' })
+			adapter: adapter({ out: 'build' })
 		})
 	]
 });
