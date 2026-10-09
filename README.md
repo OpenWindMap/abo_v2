@@ -35,6 +35,44 @@ Si l'une manque, le build échoue en listant les noms manquants.
 3. Vérifier dans Stripe que le webhook (événement `payment_intent.succeeded`) pointe vers
    `https://abo.openwindmap.org/backend/stripe-webhook`.
 
+
+# Déploiement Coolify
+ 
+Le dépôt contient un `Dockerfile` (build multi-stage, Node 22 Alpine, port **3000**) et un `.dockerignore`.
+ 
+1. Coolify → _New Resource_ → _Public/Private Repository_ → choisir le dépôt.
+2. _Build Pack_ : **Dockerfile** (base directory `/`, fichier `/Dockerfile`).
+3. _Ports Exposes_ : **3000**.
+4. _Domains_ : `https://abo.openwindmap.org` (DNS : enregistrement A vers l'IP du serveur ;
+   Traefik et Let's Encrypt gèrent le HTTPS).
+5. _Environment Variables_ : renseigner toutes les variables du tableau ci-dessus, plus
+   `ORIGIN=https://abo.openwindmap.org` (nécessaire derrière le reverse proxy).
+   - cocher **« Available at Runtime »** ;
+   - décocher « Available at Buildtime » : le `Dockerfile` utilise des valeurs factices au build,
+     les vrais secrets ne servent qu'au démarrage et n'entrent pas dans l'image ;
+   - ne **pas** cocher « Is Multiline? » (sinon les variables peuvent ne pas arriver au conteneur) ;
+   - valeurs sans guillemets, aucune variable vide.
+6. _Deploy_. Après toute modification de variable, faire **Redeploy** (un simple restart ne suffit pas).
+7. Vérifier dans Stripe que le webhook (événement `payment_intent.succeeded`) pointe vers
+   `https://abo.openwindmap.org/backend/stripe-webhook`, et que `CONFIG_STRIPE_WEBHOOK_KEY` contient
+   le secret `whsec_...` de ce webhook.
+8. Optionnel : activer le déploiement automatique (webhook GitHub/GitLab) et un healthcheck `GET /` sur le port 3000.
+Serveur conseillé : 2 vCPU / 2 Go de RAM minimum pour le build et l'exécution.
+ 
+### Dépannage
+ 
+- **404 `page not found`** (texte brut) : c'est Traefik, aucun conteneur sain n'est routé. Regarder l'onglet
+  _Logs_ de l'application.
+- **Conteneur en `Restarting` + `env_invalid`** : variables absentes au runtime (voir étape 5).
+- **POST refusés en 403** : `ORIGIN` ne correspond pas à l'URL utilisée. Pour tester sur une URL `sslip.io`,
+  mettre temporairement `ORIGIN` sur cette URL.
+### Tester l'image en local
+ 
+```bash
+docker build -t abo .
+docker run --rm -p 3000:3000 --env-file .env -e ORIGIN=http://localhost:3000 abo
+```
+ 
 ## Tests et qualité
 
 ```bash
