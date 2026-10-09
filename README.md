@@ -28,15 +28,8 @@ Si l'une manque, le build échoue en listant les noms manquants.
 | `CONFIG_VOSFACTURES_KEY` / `_DOMAIN` / `_TEST` | facturation VosFactures                      |
 | `CONFIG_ACTIVATE_KEY`                          | activation des contrats sur api.pioupiou.fr  |
 | `CONFIG_SMTP_HOST` / `_PORT` / `_USER` / `_PASSWORD` / `_FROM` | notifications e-mail par SMTP (465 = TLS, 587 = STARTTLS) |
-## Déploiement Netlify
 
-1. Netlify → _Add new site → Import from Git_ → choisir le dépôt (build : `npm run build`, détecté via `netlify.toml`).
-2. Renseigner les variables ci-dessus.
-3. Vérifier dans Stripe que le webhook (événement `payment_intent.succeeded`) pointe vers
-   `https://abo.openwindmap.org/backend/stripe-webhook`.
-
-
-# Déploiement Coolify
+## Déploiement Coolify
  
 Le dépôt contient un `Dockerfile` (build multi-stage, Node 22 Alpine, port **3000**) et un `.dockerignore`.
  
