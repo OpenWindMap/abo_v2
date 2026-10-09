@@ -1,9 +1,9 @@
 # abo.openwindmap.org — abonnements de communication
 
-Formulaire de paiement des abonnements des balises OpenWindMap (Stripe + VosFactures),
-hébergé sur Netlify.
+Formulaire de paiement des abonnements des balises OpenWindMap (Stripe + VosFactures + SMTP),
+hébergé sur Coolify.
 
-Stack : SvelteKit 3, Svelte 5, Vite 8, `@sveltejs/adapter-netlify`. Node ≥ 22.17 requis.
+Stack : SvelteKit 3, Svelte 5, Vite 8, `@sveltejs/adapter-node`. Node ≥ 22.17 requis.
 
 ## Développement
 
@@ -27,7 +27,7 @@ Si l'une manque, le build échoue en listant les noms manquants.
 | `CONFIG_STRIPE_WEBHOOK_KEY`                    | secret de signature du webhook (`whsec_...`) |
 | `CONFIG_VOSFACTURES_KEY` / `_DOMAIN` / `_TEST` | facturation VosFactures                      |
 | `CONFIG_ACTIVATE_KEY`                          | activation des contrats sur api.pioupiou.fr  |
-
+| `CONFIG_SMTP_HOST` / `_PORT` / `_USER` / `_PASSWORD` / `_FROM` | notifications e-mail par SMTP (465 = TLS, 587 = STARTTLS) |
 ## Déploiement Netlify
 
 1. Netlify → _Add new site → Import from Git_ → choisir le dépôt (build : `npm run build`, détecté via `netlify.toml`).

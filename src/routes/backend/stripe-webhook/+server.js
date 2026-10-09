@@ -2,6 +2,13 @@ import Stripe from 'stripe';
 import { config } from '#lib/server/config.js';
 
 const stripe = new Stripe(config.stripe_key);
+const smtpPort = Number(config.smtp_port);
+const transporter = nodemailer.createTransport({
+	host: config.smtp_host,
+	port: smtpPort,
+	secure: smtpPort === 465, // 465 = TLS implicite ; sinon STARTTLS si le serveur le propose
+	auth: { user: config.smtp_user, pass: config.smtp_password }
+});
 
 const status = (code) => new Response(null, { status: code });
 
@@ -72,6 +79,20 @@ async function activateContract(data) {
 	if (!response.ok) throw new Error('Could not activate communications');
 }
 
+// on attend donc l'envoi des e-mails, sans jamais laisser une erreur d'envoi casser le webhook.
+ async function notify(subject, text) {
+ 	try {
+		await transporter.sendMail({
+			from: config.smtp_from,
+ 			to: 'contact@openwindmap.org',
+ 			subject,
+ 			text
+ 		});
+ 	} catch (e) {
+		console.error('SMTP notification failed', e);
+ 	}
+ }
+
 export async function POST({ request }) {
 	const body = await request.text(); // corps brut, nécessaire à la vérification de signature
 
@@ -98,10 +119,12 @@ export async function POST({ request }) {
 
 		await activateContract(data);
 		await createInvoice(data, payment);
+		await notify(`[AUTO] renew ${data.station_id}`, JSON.stringify(data, null, 2));
 
 		return status(200);
 	} catch (e) {
 		console.error(e);
+		await notify('[AUTO] Erreur abo', String(e.stack) + '\n\n' + body);
 		return status(204); // succès côté Stripe, pour éviter que Stripe ne rejoue l'événement
 	}
 }

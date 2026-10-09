@@ -4,7 +4,12 @@ import {
 	CONFIG_VOSFACTURES_KEY,
 	CONFIG_VOSFACTURES_DOMAIN,
 	CONFIG_VOSFACTURES_TEST,
-	CONFIG_ACTIVATE_KEY
+	CONFIG_ACTIVATE_KEY,
+	CONFIG_SMTP_HOST,
+	CONFIG_SMTP_PORT,
+	CONFIG_SMTP_USER,
+	CONFIG_SMTP_PASSWORD,
+	CONFIG_SMTP_FROM
 } from '$app/env/private';
 
 export const config = {
@@ -13,5 +18,10 @@ export const config = {
 	vosfactures_key: CONFIG_VOSFACTURES_KEY,
 	vosfactures_domain: CONFIG_VOSFACTURES_DOMAIN,
 	vosfactures_test: CONFIG_VOSFACTURES_TEST,
-	activate_key: CONFIG_ACTIVATE_KEY
+	activate_key: CONFIG_ACTIVATE_KEY,
+	smtp_host: CONFIG_SMTP_HOST,
+	smtp_port: CONFIG_SMTP_PORT,
+	smtp_user: CONFIG_SMTP_USER,
+	smtp_password: CONFIG_SMTP_PASSWORD,
+	smtp_from: CONFIG_SMTP_FROM
 };
