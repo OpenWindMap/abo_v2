@@ -1,14 +1,7 @@
 import Stripe from 'stripe';
-import Mailgun from 'mailgun.js';
 import { config } from '#lib/server/config.js';
 
 const stripe = new Stripe(config.stripe_key);
-const mailgun = new Mailgun(FormData);
-const mg = mailgun.client({
-	username: config.mailgun_id,
-	key: config.mailgun_key,
-	url: 'https://api.eu.mailgun.net'
-});
 
 const status = (code) => new Response(null, { status: code });
 
@@ -79,21 +72,6 @@ async function activateContract(data) {
 	if (!response.ok) throw new Error('Could not activate communications');
 }
 
-// Sur Netlify (fonction serverless), la fonction peut être arrêtée dès que la réponse part :
-// on attend donc l'envoi des e-mails, sans jamais laisser une erreur d'envoi casser le webhook.
-async function notify(subject, text) {
-	try {
-		await mg.messages.create('ml.openwindmap.org', {
-			from: 'abo@ml.openwindmap.org',
-			to: 'contact@openwindmap.org',
-			subject,
-			text
-		});
-	} catch (e) {
-		console.error('Mailgun notification failed', e);
-	}
-}
-
 export async function POST({ request }) {
 	const body = await request.text(); // corps brut, nécessaire à la vérification de signature
 
@@ -120,12 +98,10 @@ export async function POST({ request }) {
 
 		await activateContract(data);
 		await createInvoice(data, payment);
-		await notify(`[AUTO] renew ${data.station_id}`, JSON.stringify(data, null, 2));
 
 		return status(200);
 	} catch (e) {
 		console.error(e);
-		await notify('[AUTO] Erreur abo', String(e.stack) + '\n\n' + body);
 		return status(204); // succès côté Stripe, pour éviter que Stripe ne rejoue l'événement
 	}
 }

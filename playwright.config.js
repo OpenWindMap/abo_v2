@@ -11,9 +11,7 @@ const config = {
 			CONFIG_VOSFACTURES_KEY: 'dummy',
 			CONFIG_VOSFACTURES_DOMAIN: 'dummy.example',
 			CONFIG_VOSFACTURES_TEST: 'true',
-			CONFIG_ACTIVATE_KEY: 'dummy',
-			CONFIG_MAILGUN_ID: 'dummy',
-			CONFIG_MAILGUN_KEY: 'dummy'
+			CONFIG_ACTIVATE_KEY: 'dummy'
 		}
 	}
 };

@@ -1,6 +1,6 @@
 # abo.openwindmap.org — abonnements de communication
 
-Formulaire de paiement des abonnements des balises OpenWindMap (Stripe + VosFactures + Mailgun),
+Formulaire de paiement des abonnements des balises OpenWindMap (Stripe + VosFactures),
 hébergé sur Netlify.
 
 Stack : SvelteKit 3, Svelte 5, Vite 8, `@sveltejs/adapter-netlify`. Node ≥ 22.17 requis.
@@ -27,7 +27,6 @@ Si l'une manque, le build échoue en listant les noms manquants.
 | `CONFIG_STRIPE_WEBHOOK_KEY`                    | secret de signature du webhook (`whsec_...`) |
 | `CONFIG_VOSFACTURES_KEY` / `_DOMAIN` / `_TEST` | facturation VosFactures                      |
 | `CONFIG_ACTIVATE_KEY`                          | activation des contrats sur api.pioupiou.fr  |
-| `CONFIG_MAILGUN_ID` / `CONFIG_MAILGUN_KEY`     | notifications e-mail (région EU)             |
 
 ## Déploiement Netlify
 
@@ -49,7 +48,7 @@ npm run test      # Playwright (nécessite: npx playwright install chromium)
 - Routes migrées : `index.svelte` → `+page.svelte`, `backend/*.js` → `backend/*/+server.js` (mêmes URLs).
 - Config : `svelte.config.js` supprimé, options dans `vite.config.js` ; alias `$lib` → `#lib` (`package.json > imports`).
 - Variables d'environnement validées via `src/env.js` (`$app/env/private`).
-- Stripe 9 → 23 (`new Stripe(...)`, `constructEventAsync`), mailgun.js 7 → 14 (`FormData` natif, plus de `form-data` ni `node-fetch`).
+- Stripe 9 → 23 (`new Stripe(...)`, `constructEventAsync`).
 - Webhook : les e-mails de notification sont désormais attendus (`await`) avant de répondre, sinon la fonction
   serverless pouvait être coupée avant leur envoi.
 - Retiré : le bandeau « Maintenance » codé en dur dans `app.html`, qui masquait tout le site.

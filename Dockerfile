@@ -11,9 +11,7 @@ ENV CONFIG_STRIPE_KEY=build-placeholder \
     CONFIG_VOSFACTURES_KEY=build-placeholder \
     CONFIG_VOSFACTURES_DOMAIN=build-placeholder \
     CONFIG_VOSFACTURES_TEST=false \
-    CONFIG_ACTIVATE_KEY=build-placeholder \
-    CONFIG_MAILGUN_ID=build-placeholder \
-    CONFIG_MAILGUN_KEY=build-placeholder
+    CONFIG_ACTIVATE_KEY=build-placeholder
 RUN npm run build
 
 FROM node:22-alpine
