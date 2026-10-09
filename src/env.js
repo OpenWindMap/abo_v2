@@ -1,6 +1,6 @@
 import { defineEnvVars } from '@sveltejs/kit/env';
 
-// Variables lues au démarrage du serveur (Netlify > Site settings > Environment variables).
+// Variables lues au démarrage du serveur (Coolify > Resource > Environment variables).
 export const variables = defineEnvVars({
 	CONFIG_STRIPE_KEY: { description: 'Clé secrète Stripe (sk_...)' },
 	CONFIG_STRIPE_WEBHOOK_KEY: { description: 'Secret de signature du webhook Stripe (whsec_...)' },

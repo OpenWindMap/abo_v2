@@ -322,12 +322,12 @@ Capital social variable, minimum de 18 500,00 Euros
 
 <p>Directeur de la publication : Frédéric Grand</p>
 
-<p>Hébergeur : Netlify, support@netlify.com, 2325 3rd Street, Suite 296, San Francisco, California 94107</p>
+<p>Hébergeur : OVH - 2 rue kellermann BP 80157 59053 ROUBAIX CEDEX 1 - France</p>
 
 <p>&nbsp;</p>
 
 <h3>Open-source</h3>
 
-<p>Cette page est open-source. Le code se trouve à l'adresse <a href="https://github.com/OpenWindMap/abo" target="_blank">https://github.com/OpenWindMap/abo</a></p>
+<p>Cette page est open-source. Le code se trouve à l'adresse <a href="https://github.com/OpenWindMap/abo_v2" target="_blank">https://github.com/OpenWindMap/abo_v2</a></p>
 
 <p>&nbsp;</p>

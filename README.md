@@ -18,7 +18,7 @@ Tester le webhook Stripe en local : `stripe listen --forward-to localhost:5173/b
 ## Variables d'environnement
 
 Déclarées dans `src/env.js`. Elles doivent être définies **au build et à l'exécution**
-(Netlify → Site configuration → Environment variables, portée « Builds » + « Functions »).
+(Coolify → resource → Environment variables, portée « Builds » + « Functions »).
 Si l'une manque, le build échoue en listant les noms manquants.
 
 | Variable                                       | Rôle                                         |

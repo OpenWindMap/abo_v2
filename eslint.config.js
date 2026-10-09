@@ -4,7 +4,7 @@ import prettier from 'eslint-config-prettier';
 import globals from 'globals';
 
 export default [
-	{ ignores: ['.svelte-kit/', '.netlify/', 'build/', 'node_modules/'] },
+	{ ignores: ['.svelte-kit/', 'build/', 'node_modules/'] },
 	js.configs.recommended,
 	...svelte.configs.recommended,
 	prettier,
