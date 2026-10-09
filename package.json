@@ -20,6 +20,7 @@
 		"format": "prettier --write ."
 	},
 	"dependencies": {
+		"nodemailer": "^10.0.16",
 		"stripe": "^23.0.0"
 	},
 	"devDependencies": {

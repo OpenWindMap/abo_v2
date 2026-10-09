@@ -1,4 +1,5 @@
 import Stripe from 'stripe';
+import nodemailer from 'nodemailer';
 import { config } from '#lib/server/config.js';
 
 const stripe = new Stripe(config.stripe_key);
