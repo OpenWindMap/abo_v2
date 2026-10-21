@@ -77,7 +77,7 @@
     let id = parseInt(form.station_id.value)
     try {
       if (isNaN(id)) return station_name = 'Numéro invalide'
-      const data = await fetch(`https://api.pioupiou.fr/v1/live/${id}?contract=true`)
+      const data = await fetch(`https://api.openwindmap.org/v1/live/${id}?contract=true`)
       const s = await data.json()
       if (data.status === 404) {
         station_name = `!!! Station ${id} introuvable !!!`

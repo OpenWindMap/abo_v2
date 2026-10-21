@@ -26,7 +26,7 @@ Si l'une manque, le build échoue en listant les noms manquants.
 | `CONFIG_STRIPE_KEY`                            | clé secrète Stripe                           |
 | `CONFIG_STRIPE_WEBHOOK_KEY`                    | secret de signature du webhook (`whsec_...`) |
 | `CONFIG_VOSFACTURES_KEY` / `_DOMAIN` / `_TEST` | facturation VosFactures                      |
-| `CONFIG_ACTIVATE_KEY`                          | activation des contrats sur api.pioupiou.fr  |
+| `CONFIG_ACTIVATE_KEY`                          | activation des contrats sur api.openwindmap.org  |
 | `CONFIG_SMTP_HOST` / `_PORT` / `_USER` / `_PASSWORD` / `_FROM` | notifications e-mail par SMTP (465 = TLS, 587 = STARTTLS) |
 
 ## Déploiement Coolify

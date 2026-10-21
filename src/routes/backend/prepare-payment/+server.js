@@ -15,11 +15,11 @@ function validateInput(data) {
 }
 
 async function getStation(id) {
-	const response = await fetch(`https://api.pioupiou.fr/v1/live/${id}?contract=true`);
+	const response = await fetch(`https://api.openwindmap.org/v1/live/${id}?contract=true`);
 	if (response.status === 404) {
 		return null;
 	} else if (response.status !== 200) {
-		throw new Error(`pioupiou api answered ${response.status}`);
+		throw new Error(`openwindmap api answered ${response.status}`);
 	} else {
 		return response.json();
 	}

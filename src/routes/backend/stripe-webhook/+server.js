@@ -69,7 +69,7 @@ async function createInvoice(data, payment) {
 }
 
 async function activateContract(data) {
-	const response = await fetch(`https://api.pioupiou.fr/v1/contract/activate/${data.station_id}`, {
+	const response = await fetch(`https://api.openwindmap.org/v1/contract/activate/${data.station_id}`, {
 		method: 'POST',
 		body: JSON.stringify({
 			key: config.activate_key,
