@@ -80,22 +80,6 @@ async function activateContract(data) {
 	if (!response.ok) throw new Error('Could not activate communications');
 }
 
-// Doublage migration : enregistre aussi le paiement sur la nouvelle API (base seulement,
-// l'ancienne API fait les appels Sigfox). Ne doit jamais faire échouer le webhook.
-// À la bascule : activateContract pointe vers api2 (sans sync_only) et cette fonction est supprimée.
-async function syncContractNewApi(data) {
-	try {
-		const response = await fetch(`https://api2.openwindmap.org/v1/contract/activate/${data.station_id}`, {
-			method: 'POST',
-			body: JSON.stringify({ key: config.activate_key, sponsor: data.sponsor, sync_only: true }),
-			headers: { 'Content-Type': 'application/json' }
-		});
-		if (!response.ok) throw new Error(`HTTP ${response.status}`);
-	} catch (e) {
-		await notify(`[AUTO] sync api2 échouée ${data.station_id}`, String(e));
-	}
-}
-
 // on attend donc l'envoi des e-mails, sans jamais laisser une erreur d'envoi casser le webhook.
  async function notify(subject, text) {
  	try {
@@ -135,7 +119,6 @@ export async function POST({ request }) {
 		if (!data.station_id) return status(200); // webhook sans rapport avec les abonnements : on ignore
 
 		await activateContract(data);
-		await syncContractNewApi(data);
 		await createInvoice(data, payment);
 		await notify(`[AUTO] renew ${data.station_id}`, JSON.stringify(data, null, 2));
 
